@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Cormorant Garamond", "Playfair Display", serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  color-scheme: light;
+}
+
+html,
+body {
+  background: #fffaf6;
+  color: #2b1d24;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background: #ffd1dc;
+  color: #2b1d24;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fff5f7;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ffb4c6, #e9c574);
+  border-radius: 999px;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/55 backdrop-blur-xl border border-white/60 shadow-glass;
+  }
+  .glass-dark {
+    @apply bg-white/30 backdrop-blur-2xl border border-white/40;
+  }
+  .pill {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs tracking-[0.2em] uppercase font-medium;
+  }
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-medium tracking-wide
+      bg-gradient-to-r from-blush-500 via-rose-400 to-peach-300
+      shadow-soft hover:shadow-glow transition-all duration-500
+      hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-ghost {
+    @apply relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-medium tracking-wide
+      bg-white/70 backdrop-blur border border-white text-ink
+      hover:bg-white hover:shadow-soft transition-all duration-500;
+  }
+  .section-pad {
+    @apply px-5 sm:px-8 lg:px-16 xl:px-24 py-20 sm:py-28;
+  }
+  .display {
+    font-family: var(--font-display);
+    font-feature-settings: "ss01", "liga";
+    letter-spacing: -0.01em;
+  }
+  .gold-text {
+    background: linear-gradient(120deg, #d4a84a, #f6e1a4, #b8862b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .blush-text {
+    background: linear-gradient(120deg, #f06292, #ff8fae, #ffb792);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 180, 198, 0.06) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent);
+    mask-image: linear-gradient(180deg, #000 70%, transparent);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Initial reveal helpers — JS swaps them out via GSAP */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.reveal-fade {
+  opacity: 0;
+}
+.split-char {
+  display: inline-block;
+  will-change: transform;
+}
